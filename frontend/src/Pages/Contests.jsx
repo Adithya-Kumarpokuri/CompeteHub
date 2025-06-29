@@ -45,7 +45,8 @@ export default function Contests() {
   const [pastContests,setPastContest]=useState([]);
   const [runningContests,setRunningContest]=useState([]);
   const navigate = useNavigate();
-  const URL = 'http://localhost:3000/api/v1/contest/get_all_contest';
+  //const URL = 'http://localhost:3000/api/v1/contest/get_all_contest';
+  const URL = `${import.meta.env.VITE_BACKEND_URL}/api/v1/contest/get_all_contest`;
   useEffect(() => {
       const userId = localStorage.getItem('UserID');
       if (!userId) {
@@ -65,7 +66,7 @@ export default function Contests() {
     }
   
     try {
-      const response = await fetch('http://localhost:3000/api/v1/bookmarks/bookMark_contest', {
+      const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/api/v1/bookmarks/bookMark_contest`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -96,7 +97,7 @@ export default function Contests() {
     }
     
     try {
-      const response = await fetch('http://localhost:3000/api/v1/bookmarks/remove_bookmark_contest', {
+      const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/api/v1/bookmarks/remove_bookmark_contest`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -127,7 +128,14 @@ export default function Contests() {
         const data = await response.json();
         
         const email = localStorage.getItem('UserID');
-        const bookmarksResponse = await fetch(`http://localhost:3000/api/v1/bookmarks/myBookmarks?email=${email}`);
+//         const bookmarksResponse = await fetch(
+//   `http://localhost:3000/api/v1/bookmarks/myBookmarks?email=${email}`
+// );
+
+        const bookmarksResponse = await fetch(
+ `${import.meta.env.VITE_BACKEND_URL}/api/v1/bookmarks/myBookmarks?email=${email}`
+);
+
         const bookmarksData = await bookmarksResponse.json();
         setMyBookMarks(bookmarksData.bookmarks ? bookmarksData.bookmarks : []);
         const sortedUpcomingContests = data.data.upcoming_contests.sort((a, b) => a.starttimeint - b.starttimeint);

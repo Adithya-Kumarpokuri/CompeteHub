@@ -32,8 +32,7 @@ const Youtubelinks = () => {
      const [youtubelink,setYoutubeLink]=useState([]);
      const [dialog,setDialog]=useState(false);
      const [formData,setFormData]=useState({});
-     const URL = 'http://localhost:3000/api/v1/contest/get_all_contest';
-     
+    const URL = `${import.meta.env.VITE_BACKEND_URL}/api/v1/contest/get_all_contest`;
      useEffect(() => {
         const fetchFilteredContests = async () => {
           try {
@@ -41,7 +40,7 @@ const Youtubelinks = () => {
             const data = await response.json();
       
             // Handle YouTube link fetch safely
-            const youtube = await fetch(`http://localhost:3000/api/v1/youtube/get_youtubeLink`);
+            const youtube = await fetch(`${import.meta.env.VITE_BACKEND_URL}/api/v1/youtube/get_youtubeLink`);
             let youtubeData = { links: [] };
       
             if (youtube.ok) {
@@ -81,7 +80,7 @@ const Youtubelinks = () => {
      const handleSubmit = async(e)=>{
           e.preventDefault();
           try {
-            const response = await fetch('http://localhost:3000/api/v1/youtube/add_youtubeLink', {
+            const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/api/v1/youtube/add_youtubeLink`, {
               method: 'POST',
               headers: {
                 'Content-Type': 'application/json',
