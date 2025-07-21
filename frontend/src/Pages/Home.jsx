@@ -38,7 +38,7 @@ const Home = () => {
       sx={{ backgroundColor: 'rgba(135, 153, 183, 0.88)' }}
     >
       <Typography variant="h4" color="white" gutterBottom>
-        WelCome To TLE
+        WelCome To Codex
       </Typography>
       <TextField 
         label="Email" 

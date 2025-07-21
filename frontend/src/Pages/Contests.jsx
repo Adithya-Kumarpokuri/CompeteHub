@@ -46,6 +46,7 @@ export default function Contests() {
   const [runningContests,setRunningContest]=useState([]);
   const navigate = useNavigate();
   //const URL = 'http://localhost:3000/api/v1/contest/get_all_contest';
+  console.log("VITE_BACKEND_URL =", import.meta.env.VITE_BACKEND_URL);
   const URL = `${import.meta.env.VITE_BACKEND_URL}/api/v1/contest/get_all_contest`;
   useEffect(() => {
       const userId = localStorage.getItem('UserID');
